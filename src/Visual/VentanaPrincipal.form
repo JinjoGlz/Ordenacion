@@ -13,6 +13,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Burbuja"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemBurbujaActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemShell">
               <Properties>
@@ -33,6 +36,14 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemQuickSortActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemShaker">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Shaker"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemShakerActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -76,7 +87,7 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabelTiempo" pref="258" max="32767" attributes="0"/>
+                  <Component id="jLabelTiempo" pref="299" max="32767" attributes="0"/>
                   <Component id="jLabelComparaciones" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>

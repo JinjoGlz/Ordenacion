@@ -47,6 +47,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuItemShell = new javax.swing.JMenuItem();
         jMenuItemInsercion = new javax.swing.JMenuItem();
         jMenuItemQuickSort = new javax.swing.JMenuItem();
+        jMenuItemShaker = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,6 +76,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenu1.setText("Ordenar:");
 
         jMenuItemBurbuja.setText("Burbuja");
+        jMenuItemBurbuja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemBurbujaActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItemBurbuja);
 
         jMenuItemShell.setText("Shell");
@@ -96,6 +102,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItemQuickSort);
 
+        jMenuItemShaker.setText("Shaker");
+        jMenuItemShaker.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemShakerActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemShaker);
+
         jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
@@ -115,7 +129,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelTiempo, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
+                    .addComponent(jLabelTiempo, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
                     .addComponent(jLabelComparaciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -193,6 +207,32 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItemInsercionActionPerformed
 
+    private void jMenuItemShakerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemShakerActionPerformed
+        if(archivos.isCargado()){
+            reloj.inicio();
+            int a=Shaker.ordenacionShaker(datos,0);
+            reloj.termina();
+            jLabelTiempo.setText(reloj.diferencia());
+            jLabelComparaciones.setText(""+a);
+        }else{
+            
+            JOptionPane.showMessageDialog(null, "Cargue un archivo antes de ordenar");
+        }
+    }//GEN-LAST:event_jMenuItemShakerActionPerformed
+
+    private void jMenuItemBurbujaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemBurbujaActionPerformed
+        if(archivos.isCargado()){
+            reloj.inicio();
+            int a=Burbuja.burbuja(datos,0);
+            reloj.termina();
+            jLabelTiempo.setText(reloj.diferencia());
+            jLabelComparaciones.setText(""+a);
+        }else{
+            
+            JOptionPane.showMessageDialog(null, "Cargue un archivo antes de ordenar");
+        }
+    }//GEN-LAST:event_jMenuItemBurbujaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -239,6 +279,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemBurbuja;
     private javax.swing.JMenuItem jMenuItemInsercion;
     private javax.swing.JMenuItem jMenuItemQuickSort;
+    private javax.swing.JMenuItem jMenuItemShaker;
     private javax.swing.JMenuItem jMenuItemShell;
     // End of variables declaration//GEN-END:variables
 }
