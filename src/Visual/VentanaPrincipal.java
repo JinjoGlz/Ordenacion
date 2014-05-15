@@ -155,7 +155,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldCriterio, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabelRangoColumnas, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelRangoColumnas, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -199,12 +199,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
          
             
     }//GEN-LAST:event_jButtonCargarActionPerformed
-      private void criterio(){
+      private boolean criterio(){
           try{
-          int resultado=Integer.getInteger(jTextFieldCriterio.getText());
-          
+             
+          criterio=Integer.parseInt(jTextFieldCriterio.getText())-1;
+          if(criterio>=0 && criterio<(archivos.getCabecera().length-1)){
+              return true;
+          }
           }catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Columna invalida");}    
+            JOptionPane.showMessageDialog(null, "Columna invalida"); return false;}
+          return true;
       }
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
         if(archivos.isCargado()){
@@ -223,8 +227,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jMenuItemQuickSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemQuickSortActionPerformed
-        if(archivos.isCargado()){
-            criterio();
+        if(!criterio()){
+            JOptionPane.showMessageDialog(null, "Columna fuera del orden");
+        }else
+        if(archivos.isCargado()&& criterio()){
+           
             reloj.inicio();
             int a=QuickSort.quicksort(datos, 0, datos.length-1,0,criterio);
             reloj.termina();
@@ -237,7 +244,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemQuickSortActionPerformed
 
     private void jMenuItemInsercionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemInsercionActionPerformed
-        if(archivos.isCargado()){
+        if(!criterio()){
+            JOptionPane.showMessageDialog(null, "Columna fuera del orden");
+        }else
+        if(archivos.isCargado() && criterio()){
             criterio();
             reloj.inicio();
             int a=Insercion.insercion(datos,0,criterio);
@@ -251,7 +261,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemInsercionActionPerformed
 
     private void jMenuItemShakerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemShakerActionPerformed
-        if(archivos.isCargado()){
+        if(!criterio()){
+            JOptionPane.showMessageDialog(null, "Columna fuera del orden");
+        }else
+        if(archivos.isCargado() && criterio()){
             criterio();
             reloj.inicio();
             int a=Shaker.ordenacionShaker(datos,0,criterio);
@@ -265,7 +278,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemShakerActionPerformed
 
     private void jMenuItemBurbujaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemBurbujaActionPerformed
-        if(archivos.isCargado()){
+        if(!criterio()){
+            JOptionPane.showMessageDialog(null, "Columna fuera del orden");
+        }else
+        if(archivos.isCargado() && criterio()){
             criterio();
             reloj.inicio();
             int a=Burbuja.burbuja(datos,0,criterio);
