@@ -19,11 +19,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     Fila[] datos;
       final JFileChooser fc = new JFileChooser();
       private Tiempo reloj= new  Tiempo();
+      private int criterio=0;
     /**
      * Creates new form VentanaPrincipal
      */
     public VentanaPrincipal() {
         initComponents();
+        jButtonGuardar.setVisible(false);
     }
 
     /**
@@ -35,12 +37,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         jButtonCargar = new javax.swing.JButton();
         jButtonGuardar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabelComparaciones = new javax.swing.JLabel();
         jLabelTiempo = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jTextFieldCriterio = new javax.swing.JTextField();
+        jLabelRangoColumnas = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemBurbuja = new javax.swing.JMenuItem();
@@ -48,6 +55,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuItemInsercion = new javax.swing.JMenuItem();
         jMenuItemQuickSort = new javax.swing.JMenuItem();
         jMenuItemShaker = new javax.swing.JMenuItem();
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,6 +83,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabelComparaciones.setForeground(new java.awt.Color(255, 0, 0));
 
         jLabelTiempo.setForeground(new java.awt.Color(204, 0, 0));
+
+        jLabel3.setText("Ordenar por la columna:");
+
+        jTextFieldCriterio.setText("0");
 
         jMenu1.setText("Ordenar:");
 
@@ -121,16 +136,27 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonCargar)
-                    .addComponent(jButtonGuardar))
-                .addGap(152, 152, 152)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelTiempo, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
-                    .addComponent(jLabelComparaciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonCargar)
+                            .addComponent(jButtonGuardar))
+                        .addGap(152, 152, 152)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(38, 38, 38)
+                                .addComponent(jLabelComparaciones, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelTiempo, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldCriterio, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelRangoColumnas, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -142,12 +168,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButtonCargar)
                         .addComponent(jLabel1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonGuardar)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabelTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(66, 66, 66))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(jTextFieldCriterio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabelRangoColumnas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonGuardar)
+                        .addComponent(jLabel2))
+                    .addComponent(jLabelTiempo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37))
         );
 
         pack();
@@ -160,10 +193,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
        if(returnVal==0){
           f=fc.getSelectedFile();
           datos=archivos.leer(datos, f);
+          jButtonGuardar.setVisible(true);
+          jLabelRangoColumnas.setText(archivos.getCabecera().length+" columnas disponibles");
        }
          
+            
     }//GEN-LAST:event_jButtonCargarActionPerformed
-
+      private void criterio(){
+          try{
+          int resultado=Integer.getInteger(jTextFieldCriterio.getText());
+          
+          }catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Columna invalida");}    
+      }
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
         if(archivos.isCargado()){
         File f=null;
@@ -173,18 +215,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
        if(returnVal==0){
           f=fc.getSelectedFile();
           archivos.escribir(datos, f);
-       
+          
         }}else{
             
-            JOptionPane.showMessageDialog(null, "Cargue un archivo antes de ordenar");
+            JOptionPane.showMessageDialog(null, "Cargue un archivo antes de guardar");
         }
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jMenuItemQuickSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemQuickSortActionPerformed
         if(archivos.isCargado()){
-            
+            criterio();
             reloj.inicio();
-            int a=QuickSort.quicksort(datos, 0, datos.length-1,0);
+            int a=QuickSort.quicksort(datos, 0, datos.length-1,0,criterio);
             reloj.termina();
             jLabelTiempo.setText(reloj.diferencia());
             jLabelComparaciones.setText(""+a);
@@ -196,8 +238,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItemInsercionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemInsercionActionPerformed
         if(archivos.isCargado()){
+            criterio();
             reloj.inicio();
-            int a=Insercion.insercion(datos,0);
+            int a=Insercion.insercion(datos,0,criterio);
             reloj.termina();
             jLabelTiempo.setText(reloj.diferencia());
             jLabelComparaciones.setText(""+a);
@@ -209,8 +252,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItemShakerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemShakerActionPerformed
         if(archivos.isCargado()){
+            criterio();
             reloj.inicio();
-            int a=Shaker.ordenacionShaker(datos,0);
+            int a=Shaker.ordenacionShaker(datos,0,criterio);
             reloj.termina();
             jLabelTiempo.setText(reloj.diferencia());
             jLabelComparaciones.setText(""+a);
@@ -222,8 +266,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItemBurbujaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemBurbujaActionPerformed
         if(archivos.isCargado()){
+            criterio();
             reloj.inicio();
-            int a=Burbuja.burbuja(datos,0);
+            int a=Burbuja.burbuja(datos,0,criterio);
             reloj.termina();
             jLabelTiempo.setText(reloj.diferencia());
             jLabelComparaciones.setText(""+a);
@@ -272,7 +317,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButtonGuardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelComparaciones;
+    private javax.swing.JLabel jLabelRangoColumnas;
     private javax.swing.JLabel jLabelTiempo;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
@@ -281,5 +328,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemQuickSort;
     private javax.swing.JMenuItem jMenuItemShaker;
     private javax.swing.JMenuItem jMenuItemShell;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextField jTextFieldCriterio;
     // End of variables declaration//GEN-END:variables
 }

@@ -11,13 +11,13 @@ package Datos;
  * @author jinjo
  */
 public class Insercion {
-    public static int insercion(Fila[] a,int contador){
+    public static int insercion(Fila[] a,int contador,int criterio){
         int j;
         Fila aux;
         for (int i = 0; i < a.length; i++) {
             j=i;
             aux=a[i];
-            while(j>0&&comparar(aux, a[j-1])<0){
+            while(j>0&&comparar(aux, a[j-1],criterio)<0){
                 contador++;
                 a[j]=a[j-1];
                 j--;
@@ -27,8 +27,8 @@ public class Insercion {
         return contador;
     }
     
-    public static int comparar(Fila a, Fila b){
-        int resultado=a.getDatos()[0].compareTo(b.getDatos()[0]);
+    public static int comparar(Fila a, Fila b, int criterio){
+        int resultado=a.getDatos()[criterio].compareTo(b.getDatos()[criterio]);
         return resultado;
     }
 }

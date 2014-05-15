@@ -25,8 +25,8 @@ public class Archivos {
     try{
         CsvReader datos_import = new CsvReader(file.toString());  
          datos_import.readHeaders();
-         cabecera=datos_import.getHeaders();
-         int columnas= this.cabecera.length;
+            setCabecera(datos_import.getHeaders());
+         int columnas= this.getCabecera().length;
          System.out.println(columnas);
          String[] aux=new String[columnas];
          
@@ -66,8 +66,8 @@ public class Archivos {
         }
         
         CsvWriter csvOutput = new CsvWriter(new FileWriter(file, true), ',');
-            for (int i = 0; i < cabecera.length; i++) {
-                csvOutput.write(cabecera[i]);
+            for (int i = 0; i < getCabecera().length; i++) {
+                csvOutput.write(getCabecera()[i]);
             }csvOutput.endRecord();
             for (int i = 0; i < arreglo.length; i++) {
                 Fila fila = arreglo[i];
@@ -94,5 +94,19 @@ public class Archivos {
      */
     public void setCargado(boolean cargado) {
         this.cargado = cargado;
+    }
+
+    /**
+     * @return the cabecera
+     */
+    public String[] getCabecera() {
+        return cabecera;
+    }
+
+    /**
+     * @param cabecera the cabecera to set
+     */
+    public void setCabecera(String[] cabecera) {
+        this.cabecera = cabecera;
     }
 }
